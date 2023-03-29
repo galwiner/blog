@@ -122,7 +122,7 @@ Wigner functions and other related function are used in quantum optics and quant
 - The use of bosonic modes can enable the simplification of the QPU and improve scalability.
 - The system still uses transmons or other superconducting qubit architectures, but there are less of them and we didn't explain what they are there for.
 - Another thing I did not say: we are in, or at least near, the realm of [continuous variable quantum computing](https://en.wikipedia.org/wiki/Continuous-variable_quantum_information). Just in case you want some extra nighttime reading.
-- 
+
 Hope to see you all in Thursday's talk!
 - 
 
