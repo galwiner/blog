@@ -1,6 +1,7 @@
 ---
-title: "Mathematics on Quantum"
+title: "Arithmetic on Quantum Computers"
 date: 2023-03-13T17:16:42+02:00
+math: true
 draft: true
 ---
 
@@ -26,7 +27,7 @@ I've recently visited the Musée des Arts et Métiers (=Museum of Arts and Craft
 
 The museum holds all manor of historic scientific instruments, and is well recommended, but one relic I was particularly interested in is the Pascaline, Pascal's mechanical calculator. This 
 
-![img.png](img.png)
+![img.png](pascalino.png)
 
 This machine
 

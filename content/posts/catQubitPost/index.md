@@ -124,7 +124,7 @@ Wigner functions and other related function are used in quantum optics and quant
 - Another thing I did not say: we are in, or at least near, the realm of [continuous variable quantum computing](https://en.wikipedia.org/wiki/Continuous-variable_quantum_information). Just in case you want some extra nighttime reading.
 
 Hope to see you all in Thursday's talk!
-- 
+
 
 
 
