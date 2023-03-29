@@ -17,7 +17,7 @@ It's not strictly important we understand what bosons are. However, I know that 
 Quantum particles have _quantum numbers_ associated with them. These numbers are labels. Quantities associated with the particle.
 Two examples for such labels are electric charge and spin. Charge is more familiar than spin, but I think most people reading this have good practical intuition on how we typically think of spin: an arrow pointing up or down and "glued" to the particle in some way. What we may not usually think about, if we've not had formal training in this field, is "how much spin" the particle has. This spin vector has a length which for reasons I will not go into (though it's just algebra!) is measured in half-integer quantities. So you can half spin-\\(  ½ \\) particles, spin-1 particles and so on (the units, btw, are multiples of \\( \hbar \\) which is a fundamental constant with units of angular momentum. That's besides the point though).
 
-To avoid repeatedly writing _half-integer_ and _integer_ spin let's give such particles names. **Fermions** are those particles with half-integer spin and **Bosons** are particles with integer spin. It's not immediately apparent why this should be the case, but there's a **huge** difference in the behaviors of fermions and bosons. It comes effect when you have more than one such particle.    
+To avoid repeatedly writing _half-integer_ and _integer_ spin let's give such particles names. **Fermions** are those particles with half-integer spin and **Bosons** are particles with integer spin. It's not immediately apparent why this should be the case, but there's a **huge** difference in the behaviors of fermions and bosons. It comes effect when you have more than one such particle. 
 
 This difference is articulated in something called "spin statistics" and it simply means fermions do not like occupying the same quantum state whereas bosons are quite happy to do so. It is also known, for fermions, as the Fermi exclusion principle. It's incredibly important and is an essential basic principle behind all chemistry and the structure of atoms, molecules and the universe.
 
@@ -27,17 +27,17 @@ In quantum mechanics particles and waves are interchangeable descriptions. For e
 
 ## Resonators 
 
-A resonator is the name we give a device that can maintain an oscillation. An example of a resonator is a transparent glass donut which can have a photon circulating inside. This is called a "Whispering Gallery Mode" resonator, because it's a similar effect to what happens in the [Whispering Gallery of St. Paul's Cathedral in London](https://en.wikipedia.org/wiki/Whispering_gallery). Another, simpler, example is just two mirrors facing each other. This is the effect we get when we share our screen in Slack, and that screen shows the very Slack window we are sharing to. This back and forth ping-pong "resonates" like an echo. Resonators for electromagnetic waves, sometimes called cavities (like cavities in your teeth), can be designed and manufactures in such a way that the waves lives in them for a very long time before it decays. A good way to say exactly how good a cavity is, involves counting the number of full oscillations a wave can undergo before it decays to nothing. In a really good cavity this number can be as high as \\(10^{10}\\) or more. Some resonators are _planar_ meaning they live in the plane where the electromagnetic waves propagate (they are 2 dimensional). Others are 3D cavities and, clearly, extend in a third direction. 3D cavities are bulkier but for some things are better. They are often used in boson code contexts.  
+A resonator is the name we give a device that can maintain an oscillation. An example of a resonator is a transparent glass donut which can have a photon circulating inside. This is called a "Whispering Gallery Mode" resonator, because it's a similar effect to what happens in the [Whispering Gallery of St. Paul's Cathedral in London](https://en.wikipedia.org/wiki/Whispering_gallery). Another, simpler, example is just two mirrors facing each other. This is the effect we get when we share our screen in Slack, and that screen shows the very Slack window to which we are sharing. This back and forth ping-pong "resonates" like an echo. Resonators for electromagnetic waves, sometimes called cavities (like cavities in your teeth), can be designed and manufactures in such a way that the waves lives in them for a very long time before decaying. A good way to say exactly how good a cavity is involves counting the number of full oscillations a wave can undergo before it decays to nothing. In a really good cavity this number can be as high as \\(10^{10}\\) or more. Some resonators are _planar_ meaning they live in the plane where the electromagnetic waves propagate (they are 2 dimensional). Others are 3D cavities and, clearly, extend in a third direction. 3D cavities are bulkier but for some things are better. They are often used in boson code contexts.  
 
-We discussed how cavities are used in reading the quantum state of a superconducting qubit in our first quantum hardware seminars. The idea was we transmit a microwave pulse on a cavity and measure its reflection, both in amplitude and phase. In this current context things are going to be very similar. 
+We discussed how cavities are used in reading the quantum state of a superconducting qubit during our first quantum hardware seminars. The idea was we transmit a microwave pulse on a cavity and measure its reflection, both in amplitude and phase. In this current context things are going to be very similar. 
 
-The takeaway message from this section is: photons are bosons, they can exist in a resonator for a long time and when there they can be described as occupying a bosonic mode of the cavity. One basis for describing such modes is the Fock basis, which is the photon-number basis. Of course , this is not the only possible basis. 
+The takeaway message from this section is: photons are bosons, they can exist in a resonator for a long time and there they can be described as occupying a bosonic mode of the cavity. One basis for describing such modes is the Fock basis, which is the photon-number basis. Of course , this is not the only possible basis. 
 ## Creation and Annihilation Operators
 
 The algebra of how we work with Fock states is simple and elegant. An **operator** acts on a state, possibly changing it to a different state and/or adding a multiplicative (complex) pre-factor. The creation state working on a fock state operates as follows: 
 
-$$ \hat{a}\ket{n} = n\ket{n-1}$$
-$$ \\hat{a}^\dagger\ket{n} = (n+1)\ket{n+1}$$
+$$ \hat{a}\ket{n} = \sqrt{n}\ket{n-1}$$
+$$ \\hat{a}^\dagger\ket{n} = \sqrt{n+1}\ket{n+1}$$
 
 If we combine these, we get the number operator (check for yourself):
 
@@ -47,7 +47,7 @@ So if you can implement this operator, you can measure how many photons there ar
 
 ## Kitten code
 
-Now we go on to designing a qubit encoding, built from cavity modes, which is useful. 
+Now we go on to designing a useful qubit encoding, built from cavity modes. 
 
 Consider the following encoding where the logical qubit is defined in terms of a superposition of (bosonic) Fock states. 
 
@@ -56,7 +56,7 @@ $$ \ket{1_L} = \ket{2} $$
 
 On average, each of these states has the same photon number \\(\hat{n}=2\\). You can check this by calculating the expectation value of the number operator for each basis state. We can also say that these states have even **parity**. They have a +1 eigenvalue when operated upon by the parity operator.
 
-This selection of basis quite clever for the following reason. What if, for example, we have a single photon lost. This is an error we can easily model with the \\(\hat{a}\\) operator. If we start with a state with even parity \\(\ket{\psi_L} = \alpha \ket{0_L} + \beta \ket{1_L}\\) , what will happen to our stored qubits? 
+This selection of basis is quite clever for the following reason. What if, for example, we have a single photon lost. This is an error we can easily model with the \\(\hat{a}\\) operator. If we start with a state with even parity \\(\ket{\psi_L} = \alpha \ket{0_L} + \beta \ket{1_L}\\) , what will happen to our stored qubits? 
 
 $$ \hat{a} \ket{\psi_L} = \sqrt{2}(\alpha \ket{0_L} +\beta \ket{1_L}$$
 
@@ -121,8 +121,10 @@ Wigner functions and other related function are used in quantum optics and quant
 - These encodings are designed to be robust against certain kinds of errors. 
 - The use of bosonic modes can enable the simplification of the QPU and improve scalability.
 - The system still uses transmons or other superconducting qubit architectures, but there are less of them and we didn't explain what they are there for.
-
+- Another thing I did not say: we are in, or at least near, the realm of [continuous variable quantum computing](https://en.wikipedia.org/wiki/Continuous-variable_quantum_information). Just in case you want some extra nighttime reading.
+- 
 Hope to see you all in Thursday's talk!
+- 
 
 
 
