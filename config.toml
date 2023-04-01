@@ -17,3 +17,11 @@ label = "My Twitter"
 name = "youtube"
 url = "https://www.youtube.com/channel/UCE3KRsjYDMRLZglSU8_zraA"
 label = "My Twitter"
+
+
+[[params.ananke_socials]]
+name = "github"
+url = "https://github.com/galwiner/"
+label = "My github"
+
+
