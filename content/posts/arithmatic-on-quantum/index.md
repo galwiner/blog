@@ -2,7 +2,7 @@
 title: "Arithmetic on Quantum Computers"
 date: 2023-03-13T17:16:42+02:00
 math: true
-draft: true
+draft: false
 ---
 
 # How do you calculate 1+1 on a quantum computer?
@@ -10,7 +10,7 @@ draft: true
 ## Uri Levy's question
 There's something about being part of a group that's wonderfully transformative. You drink coffee with some people, day in, day out, for a few years, and start speaking a common language. You work with them, commute with them, and walk past them in the halls. And you end up being like them or at least trying to be. 
 Working in the Weizmann Institute's (WIS) complex system department was in a very transformative environment. There are many ways in which this place has a language of its own. There's the science, of course. It's the atoms, ions, lasers, magnets, resonators, and nonlinear crystals. It's catching the end of someone's sentence when walking by "...and that's just adiabatic elimination once again!". But there's more to that than just that. It's also about how people reason about the world in general. How they explain themselves and question others. 
-Encountering someone who thinks very clearly can be magical. I tried back then, as I do now, to emulate such figures. The school of thought of Nir Davidson, Ofer Firstenberg, Roee Ozeri, and others. It's a school whose motto is always trying to distill an idea to its simplest and most condensed form and (usually) doing so kindly. 
+Encountering someone who thinks very clearly can be magical. I tried back then, as I do now, to emulate such figures. The school of thought of members of the faculty such as Nir Davidson, Ofer Firstenberg, Roee Ozeri, and others. It's a school whose motto is always trying to distill an idea to its simplest and most condensed form and (usually) doing so kindly. 
 Another of these figures is Dr. Uri Levy. A physicist who had roamed those halls as a young student. He then pursued a career in physics in industry, only to return once more as a moth to the flame. Uri has a way of asking questions that is like Socratic dialogue. They are delivered with quiet honesty but tend to find weak spots in the argument, like a stinger missile hitting a Russian tank. 
 After leaving WIS's comforts, I started working on quantum computers. Uri was curious and called me one day to ask, "So, I know quantum computers will break cryptography. But how do I even use one to calculate 1+1"? I promised Uri an answer for a while and kept putting it off. The rest of this post, which started with a long-winded (and superfluous) introduction, aims to address this question and to do so in the spirit of the complex systems department. 
 
@@ -49,34 +49,31 @@ It seems that all that remains to be explained is how to make a quantum full-add
 
 ![adder_classiq](adder_in_classiq.jpg)
 
-This is a quantum circuit diagram. Each line is a quantum register, which in principal can represent multiple qubits but in this example each one is a single qubit, so what we are looking at is a 4 qubit circuit. The quantum logic gates operating on the qubits are all controlled-not (also called controlled-Z) gates. The solid dots are the control qubits and the open circle with a plus sign is the target qubit. Note there can be multiple controls qubits. I could go through the logic 
+This is a quantum circuit diagram. Each line is a quantum register, which in principal, can represent multiple qubits. In this example, each is a single qubit, so we are looking at a 4-qubit circuit. The elements appearing on the lines are quantum logic gates operating on the qubits. There are many kinds of these, but here they are all controlled-not (also called controlled-Z) gates. Their operation is to flip 1 to 0 (and vice versa) if the control qubits are all set to 1. The solid dots are the control qubits, and the open circle with a plus sign is the target qubit. Note there can be multiple control qubits. I could go through the truth table of this circuit, showing this is indeed a full adder whose inputs are q0 and q1 and carry-in and carry-out registers are q2 and q3. Because this post is getting too long as it is,  you can take it as an exercise or take my word for it.
 
-I used The truth table for a multi-controlled X gate: 
+There's one crucial point to remember here. It's a point that has nothing to do with how you compute 1+1 on a quantum computer and everything to do with what a quantum computer actually does. As I have already mentioned, each of the registers appearing on this diagram is a qubit. It's not a bit, taking the values 1 or 0. It can take the superposition value \\(\ket{q} = \alpha\ket{0} + \beta \ket{1} \\) where \\(\alpha, \beta\\) are complex numbers. 
 
+So this is how you would compute the addition of two binary digits encoded onto single qubits on a quantum computer. There are many open questions left. For example: how would you implement a two qubit gate like the ones shown in the circuit representation. But that's a question I would prefer addressing in a separate post. Another question is: what if I want to add together numbers greater than 1 or 0, what then? In such a case, like in any digital computer, you'd need more (qu)bits to represent the number. 
 
+### Classiq and the automated synthesis of quantum circuits
 
-What if I want to add registers with more? 
+Building quantum circuits to implement some algorithm is a non-trivial task. The simple adder circuit I show above was synthesized using the [Classiq platform](https://platform.classiq.io/). This is all a shameless plug, as [Classiq](https://www.classiq.io/) is the company I work for. But I suppose a personal blog is one big shameless self-promotion anyway, so it makes sense. 
 
+In any case, the idea with algorithmic synthesis is to automate and abstract away some of the work at the level of single qubits, so you can actually do complex tasks.
+
+In fact designing complex quantum circuits will become quite impossible once the qubit number becomes large. As an example, see what the Classiq platform generates for the same simple adder as above, but each input register has three qubits (so it can represent the addition of 7 +7).
 
 ![adder_classiq_3qb](classiq_adder_3qb.jpg)
 
-Note, importantly, that doing so will get you something more involved than a classical-logic implementation. 
+The circuits quickly become unwieldy as the number of qubits increase. Requiring some measure of clever automation. 
 
 ### Uncomputation and garbage collection
 
-In principle that's true. At least if all you want to do is a single computation that does not feed into the next algorithmic step. That would be a very bad use case for a quantum computer, though. Unless your arithmetic step is the last one in the quantum circuit, it feeds into other algorithmic building blocks. If that is the case, you will end up with some unavoidable house keeping. 
+I described how quantum logic gates can be used to create a full adder circuit, but also tried to hint to the fact that's not the whole story. If all you want to do is a single computation that does not feed into the next algorithmic step, there really isn't any more to be said. But that would be a terrible use case for a quantum computer. Unless your arithmetic step is the last one in the quantum circuit, it feeds into other algorithmic building blocks. If that is the case, you will end up with some unavoidable housekeeping to do. 
 
-If we have uncomputation [wiki](https://en.wikipedia.org/wiki/Uncomputation). 
+Suppose we have qubits that are not representing data (the input registers) but help the computation in some way (sometimes known as ancillary or helper qubits). In that case, they can become entangled with the computation. At first thought, so what? The issue is simply ignoring these qubits is like measuring them. If they are entangled with your computation results, that can affect the result you get. I may write a post on uncomputation at some point, but for now, I will just point to the [wiki](https://en.wikipedia.org/wiki/Uncomputation) entry on it. If you know uncomputation is needed, you can extend the circuit and "unwind" the entanglement between ancillary and data qubits. This way, they become independent, and you don't need to care about measuring the ancillae.
+Moreover, if you uncompute, those qubits become free again. They can be used as a resource in further work done by the quantum computer. This is another crucial example of what automatic circuit synthesis, as done by the Classiq platform, make quantum algorithm synthesis more tractable.
 
+## Conclusion
 
-Like the encoding of digits as positions on a set of cogs, or as on the orientation of magnetic segments on a piece of tape, 
-
-
-## Imagined Qubit architectures
-
-Even with additional sophistication, we should get 1+1 on a quantum computer out of the way. To do so we should select a specific qubit architecture. 
-I don't feel like going into the nuts and bolts of any qubit in particular (in this post). So let's invent a qubit type. It's not dissimilar to existing qubit types but if I don't name it I don't have to explain anything real, like resonance frequencies or interaction rates or other things of this sort. Our imagined register of qubits will be made from a series of potential wells, each containing one spin in its ground state. We can flip the direction of the spin using our control electronics. We can also create a bias (electric) field such that spins want to tunnel out of their well and go to the next well. 
-
-
-
-
+Computing 1+1=2 ended up being far less exciting than one may have hoped. There's no quantum magic in this implementation; it's merely a full-adder. Much more can be said, though. We can discuss how quantum logic has to be reversible, unlike classic logic. We can explain how single- and multi-qubit gates' hardware implementation looks in different hardware platforms. We can muse about the intricacies of synthesizing circuits efficiently and comment on when running deep quantum circuits with many operations in sequence will be realistic. But all these things are best kept for another time. 
