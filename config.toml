@@ -8,6 +8,8 @@ name = "linkedin"
 url = "https://www.linkedin.com/in/galwiner/"
 label = "My Linkedin"
 
+sectionPagesMenu = 'main'
+
 [[params.ananke_socials]]
 name = "twitter"
 url = "https://twitter.com/galwiner"
@@ -24,4 +26,16 @@ name = "github"
 url = "https://github.com/galwiner/"
 label = "My github"
 
-
+[menu]
+[[menu.main]]
+  name = 'Home'
+  url = '/'
+  weight = 10
+[[menu.main]]
+  name = 'About'
+  url = '/about'
+  weight = 20
+#[[menu.main]]
+#  name = 'Contact'
+#  url = '/contact'
+#  weight = 30
