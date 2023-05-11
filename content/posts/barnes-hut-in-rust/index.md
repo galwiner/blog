@@ -39,10 +39,6 @@ draft: false
 
 ## WASM - Web Assembly and a live example
 
-[//]: # ()
-[//]: # ({{<barnes_hut>}})
-
-
 
 
 
