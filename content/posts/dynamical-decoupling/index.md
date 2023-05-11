@@ -1,5 +1,5 @@
 ---
-title: "Barnes Hut in Rust"
+title: "Dynamical Decoupling"
 date: 2023-04-30
 draft: true
 ---
