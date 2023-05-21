@@ -1,10 +1,12 @@
 ---
 title: "Barnes Hut in Rust"
 date: 2023-04-21T17:23:48+03:00
-draft: false
+draft: true
 ---
 
-[//]: # (# Apprenticeship )
+# Apprenticeship 
+
+The education system in the UK has an apprenticeship path built into it. This path allows young people who wish to conclude their purely academic studies at the age of 16 to acquire vocational skills. I've never done an apprenticeship myself, but when I was enamoured by the idea when I heard about it as a school boy. 
 
 [//]: # ()
 [//]: # (In England there were apprenticeships)
