@@ -12,6 +12,9 @@ The education system in the UK has an apprenticeship path built into it. This pa
 
 [Zen and the art of motorcycle maintenance](https://www.amazon.com/Zen-Art-Motorcycle-Maintenance-Inquiry/dp/0060589469)
 
+>Mountains should be climbed with as little effort as possible and without desire. The reality of your own nature should determine the speed. If you become restless, speed up. If you become winded, slow down. You climb the mountain in an equilibrium between restlessness and exhaustion. Then, when you’re no longer thinking ahead, each footstep isn’t just a means to an end but a unique event in itself. This leaf has jagged edges. This rock looks loose. From this place the snow is less visible, even though closer. These are things you should notice anyway. To live only for some future goal is shallow. It’s the sides of the mountain which sustain life, not the top. Here’s where things grow. 
+>
+> But of course, without the top you can’t have any sides. It’s the top that defines the sides. So on we go—we have a long way—no hurry—just one step after the next—with a little Chautauqua for entertainment -- .Mental reflection is so much more interesting than TV it’s a shame more people don’t switch over to it. They probably think what they hear is unimportant but it never is.
 
 [//]: # ()
 [//]: # (In England there were apprenticeships)
