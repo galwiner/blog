@@ -8,6 +8,11 @@ draft: true
 
 The education system in the UK has an apprenticeship path built into it. This path allows young people who wish to conclude their purely academic studies at the age of 16 to acquire vocational skills. I've never done an apprenticeship myself, but when I was enamoured by the idea when I heard about it as a school boy. 
 
+[Shop craft as soul craft](https://www.amazon.com/Shop-Class-Soulcraft-Inquiry-Value-ebook/dp/B00273BHPU)
+
+[Zen and the art of motorcycle maintenance](https://www.amazon.com/Zen-Art-Motorcycle-Maintenance-Inquiry/dp/0060589469)
+
+
 [//]: # ()
 [//]: # (In England there were apprenticeships)
 
