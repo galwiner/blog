@@ -44,12 +44,19 @@ This is a nice set of equations as you can see both Newton's second law and his 
 
 If we only have two objects interacting, there is a close form solution. Observationally, the solution was formulated by Kepler in his [laws of planetary motion](https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion). Newton was then able to find equations describing the motion from the basic principles he had laid down. 
 
-If you have three bodies, famously, there's already no closed form solution. There are certainly no such solutions if you have \\(n\\) interacting bodies. This is because the system becomes chaotic, but I will not delve into the details of why that is the case here. You can [read about it](https://link.springer.com/chapter/10.1007/978-1-4684-5997-5_2) if you are interested. 
+If you have three bodies, [famously](https://en.wikipedia.org/wiki/Three-body_problem), there's already no closed form solution. It's the entire premise of a series of sci-fi novels, the [first of which](https://www.amazon.com/Three-Body-Problem-Cixin-Liu/dp/0765382032) I highly recommend. 
+
+There are certainly no such solutions if you have \\(n\\) interacting bodies. This is because the system becomes chaotic, but I will not delve into the details of why that is the case here. You can [read about it](https://link.springer.com/chapter/10.1007/978-1-4684-5997-5_2) if you are interested. 
 
 To tackle the motion of many particles we must then do so numerically. The thing about gravitational attraction is that the range of the force is infinite. We see this from the equations above: the force only disappears when the distance \\(|\vec{r}_1-\vec{r}_2|\rightarrow \infty\\). 
 
-So if you want to calculate the force acting on each particle in a collection, you really have to take into account each individual particle. How many computations is that? About \\(n^2\\). You pick one particle out of \\(n\\) and then need to pick each of the other \\(n-1\\) particles left to make the force calculations. If you have \\(10^4\\) particles you need \\(10^8\\)) calculations. 
+So if you want to calculate the force acting on each particle in a collection, you really have to take into account each individual particle. How many computations is that? About \\(n^2\\). You pick one particle out of \\(n\\) and then need to pick each of the other \\(n-1\\) particles left to make the force calculations. If you have \\(10^4\\) particles you need \\(10^8\\)) calculations. Mind you, that's the number of calculations you need to make _each time_ you update the position of your \\(n\\) bodies. And, indeed, you may want more objects on screen. Quadratic computational overhead is a dear price to pay. 
 
+## The Quad Tree - a data structure for efficiently partitioning spatial detail
+
+The name of the game, then, is to find a strategy making a computation with quadratic computational complexity to one that is cheaper. Maybe logarithmic, probably \\(O(n\cdot log(n))\\).
+
+The first step is to store data about our particles in an efficient way, taking advantage of the fact they are not uniformly distributed in our simulation space. There is often at least some structure. Namely, regions where they are more, or less, tightly packed together. 
 
 
 [//]: # (When I first heard about Python it was sometime around winter of 2008.  I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language.  I was a physics undergraduate and had barely done a basic programming course, taught in C. )
@@ -62,7 +69,6 @@ So if you want to calculate the force acting on each particle in a collection, y
 [//]: # ()
 
 [//]: # ()
-[//]: # (## The Quad Tree - a data structure for efficiently partitioning spatial detail)
 
 [//]: # ()
 [//]: # (## The Barnes-Hut algorithm)
