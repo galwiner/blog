@@ -42,11 +42,14 @@ $$ m\ddot{\vec{r}}_2 = \frac{G m_1 m_2}{|\vec{r}_2-\vec{r}_1|^3}(\vec{r}_2-\vec{
 
 This is a nice set of equations as you can see both Newton's second law and his third (action and reaction) participating. 
 
-If we only have two objects interacting, there is a close form solution. Observationally, the solution was formulated by Kepler in his laws of orbital motion. Newton was then able to find equations describing the motion from the basic principles he had laid down. 
+If we only have two objects interacting, there is a close form solution. Observationally, the solution was formulated by Kepler in his [laws of planetary motion](https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion). Newton was then able to find equations describing the motion from the basic principles he had laid down. 
 
-The thing about gravitational attraction is that the range of the force is infinite. We see this from the equations above: the force only disappears when the distance \\(|\vec{r}_1-\vec{r}_2|\rightarrow \infty\\). 
+If you have three bodies, famously, there's already no closed form solution. There are certainly no such solutions if you have \\(n\\) interacting bodies. This is because the system becomes chaotic, but I will not delve into the details of why that is the case here. You can [read about it](https://link.springer.com/chapter/10.1007/978-1-4684-5997-5_2) if you are interested. 
 
-So if you want to calculate the force acting on each particle in a collection, you really have to take into account each individual particle. How many computations is that? About \\(n^2\\). 
+To tackle the motion of many particles we must then do so numerically. The thing about gravitational attraction is that the range of the force is infinite. We see this from the equations above: the force only disappears when the distance \\(|\vec{r}_1-\vec{r}_2|\rightarrow \infty\\). 
+
+So if you want to calculate the force acting on each particle in a collection, you really have to take into account each individual particle. How many computations is that? About \\(n^2\\). You pick one particle out of \\(n\\) and then need to pick each of the other \\(n-1\\) particles left to make the force calculations. If you have \\(10^4\\) particles you need \\(10^8\\)) calculations. 
+
 
 
 [//]: # (When I first heard about Python it was sometime around winter of 2008.  I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language.  I was a physics undergraduate and had barely done a basic programming course, taught in C. )
