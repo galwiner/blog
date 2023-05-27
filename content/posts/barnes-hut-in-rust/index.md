@@ -60,20 +60,14 @@ The first step is to efficiently store data about our particles, taking advantag
 
 A Quad-Tree is a two-dimensional extension of a binary tree. Instead of each node having _Left_ or _Right_ leaves, it has exactly four children representing the Northwest, Northeast, Southwest and Southeast equally subdivided quadrants of a square (the original node).  
 
-[//]: # (When I first heard about Python it was sometime around winter of 2008. I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language. I was a physics undergraduate and had barely done a basic programming course, taught in C. )
+
+## The Barnes-Hut algorithm
 
 
+## The Rust programming language
 
-[//]: # ()
-[//]: # (## The Rust programming language)
-
-[//]: # ()
-
-[//]: # ()
-
-[//]: # ()
-[//]: # (## The Barnes-Hut algorithm)
+When I first heard about Python it was sometime around winter of 2008. I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language. I was a physics undergraduate and had barely done a basic programming course, taught in C. It 
 
 ## WASM - Web Assembly and a live example
 
-
+[//]: # (TODO: add the simulation output here with CI)
