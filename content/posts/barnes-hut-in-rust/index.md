@@ -1,8 +1,8 @@
 ---
 title: "Barnes Hut in Rust"
-date: 2023-04-21T17:23:48+03:00
+date: 2023-05-27
 math: true
-draft: true
+draft: false
 ---
 
 # Apprenticeship 
@@ -33,9 +33,21 @@ So on this expedition, I recruited not one but two much more experienced guides:
 
 ## The computational complexity of many particles moving under gravity
 
+Our goal today, then, is to draw circles on a computer screen that gravitationally act upon each other. For that, let's quickly recall some principles of mechanics and how one can find the equations of motion of interacting objects. 
+
 To compute the gravitational attraction of two particles you apply Newton's law of gravitation. 
 
-$$ F_{12}= \sqrt{n}\ket{n-1}$$
+$$ m\ddot{\vec{r}}_1 = \frac{G m_1 m_2}{|\vec{r}_1-\vec{r}_2|^3}(\vec{r}_1-\vec{r}_2)$$
+$$ m\ddot{\vec{r}}_2 = \frac{G m_1 m_2}{|\vec{r}_2-\vec{r}_1|^3}(\vec{r}_2-\vec{r}_1)$$
+
+This is a nice set of equations as you can see both Newton's second law and his third (action and reaction) participating. 
+
+If we only have two objects interacting, there is a close form solution. Observationally, the solution was formulated by Kepler in his laws of orbital motion. Newton was then able to find equations describing the motion from the basic principles he had laid down. 
+
+The thing about gravitational attraction is that the range of the force is infinite. We see this from the equations above: the force only disappears when the distance \\(|\vec{r}_1-\vec{r}_2|\rightarrow \infty\\). 
+
+So if you want to calculate the force acting on each particle in a collection, you really have to take into account each individual particle. How many computations is that? About \\(n^2\\). 
+
 
 [//]: # (When I first heard about Python it was sometime around winter of 2008.  I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language.  I was a physics undergraduate and had barely done a basic programming course, taught in C. )
 
