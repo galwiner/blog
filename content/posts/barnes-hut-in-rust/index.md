@@ -21,15 +21,17 @@ As I learned through subsequent life experience, there is seldom a responsible a
 
 ## A good project and good guides
 
-I've had a long-standing project with multiple false starts over the years. Actually, I have a proverbial drawer full of them, but in this one, the goal is to simulate the motion of many interacting particles on a computer screen. It's natural for any physics student to consider doing this, as it has been a reference setup since the dawn of the discipline: the ideal gas, properties of solid matter, and the structure of galaxies. 
+I've had a long-standing project with multiple false starts over the years. Actually, I have a proverbial drawer full of them, but in this one, the goal is to simulate the motion of many interacting particles on a computer screen. It's natural for any physics student to consider doing this, as it has been a reference setup (at least in thought) since the early days of the discipline: the ideal gas, properties of solid matter, and the structure of galaxies. 
 
 While reading about simulating the gravitational interaction of many bodies, one algorithm caught my eye and imagination. It's not necessarily because it is particularly elegant or ingenious (though it ticks both boxes). Its output looks pretty, even if you don't understand the details.
 
 That, I think, is an essential factor when selecting a project. It should be sufficiently simple (and this one seemed to be simple because it was one of the first algorithms in the book), and it should be exciting (to you). This particular one had the added feature of being very visual, which is my preferred mode of thought. 
 
-The omniscient adult being in absentia, is a curious protagonist doomed to hack about like a drunkard? That may well be the case. But if you can find someone, preferably someone slightly more experienced, to walk with you, that's significantly better. Some people enjoy walking alone. I like company.
+And so, with the omniscient adult in absentia, is a curious protagonist doomed to hack about like a drunkard? That may well be the case. But if you can find someone, preferably someone slightly more experienced, to walk with you, that's significantly better. Some people enjoy walking alone. I like company.
 
-So on this expedition, I recruited not one but two much more experienced guides: Joe Lee Moyet and Matan Cohen. Each of these gentlemen has orders of magnitude more programming experience than I will ever have. I could say more kind words about Joe and Matan, but I'll avoid this one tangent for now. Anyway, thanks, Joe and Matan! And for the rest of us, I recommend finding a good guide to help you up the mountain with as little effort as possible. 
+For this expedition, I recruited not one, but two, much more experienced guides: Joe Lee Moyet and Matan Cohen. Each of these gentlemen has orders of magnitude more programming experience than I will ever have. I could say more kind words about Joe and Matan, but I'll avoid this one tangent for now. Anyway, thanks, Joe and Matan! And for the rest of us, I recommend finding a good guide to help you up the mountain with as little effort as possible.
+
+There are several take-home messages for me here, which made this project reach completion this time. It wasn't too hard. I was excited about the topic. it fit well with what I feel is fun doing. I piggybacked another skill I wanted to learn (the Rust programming language) on top of something I was already excited about to get something of a two-for-one, and most importantly I had guides I wasn't afraid to look stupid next to and who were at least as excited about the project as I was.    
 
 ## The computational complexity of many particles moving under gravity
 
@@ -56,17 +58,33 @@ So if you want to calculate the force acting on each particle in a collection, y
 
 The name of the game, then, is to find a strategy for making a computation with quadratic computational complexity to one that is cheaper. Maybe logarithmic, probably \\(O(n\cdot log(n))\\).
 
-The first step is to efficiently store data about our particles, taking advantage of the non-uniformity of particle distribution in our simulation space. There is often at least some structure. Namely, regions where they are more, or less, tightly packed together. 
+The first step is to efficiently store data about our particles. This can be done by taking advantage of the non-uniformity of particle distribution in our simulation space. There is often at least some structure. Namely, regions where they are more, or less, tightly packed together. 
 
 A Quad-Tree is a two-dimensional extension of a binary tree. Instead of each node having _Left_ or _Right_ leaves, it has exactly four children representing the Northwest, Northeast, Southwest and Southeast equally subdivided quadrants of a square (the original node).  
 
+### Divide and conquer 
+
+When building a quad tree, we decide on some particle capacity each quadrant is allowed. If the capacity is exceeded (as we add another particle), then a subdivision of the quadrant occurs, and we distribute the particles amongst the new collection. An example is shown in the image below where we set the capacity (arbitrarily) to four particles and when there are 5 particles we must subdivide. 
+
+![](division.png)
+
+As the number of particles increases the number of repeated subdivisions must also increase, as in the following image taken from the [wikipedia article](https://en.wikipedia.org/wiki/Quadtree#:~:text=A%20quadtree%20is%20a%20tree,into%20four%20quadrants%20or%20regions) on this topic.
+
+![](Point_quadtree.png)
+
+## Integration of the equations of motion
+
+Writing down the force equations on every particle is fairly straight forward, if computationally complex. But even if we have infinite computational power, we need some rule for updating the velocities and positions of those particles. 
+
+
+Euler, Verlet and Runge Kutta
 
 ## The Barnes-Hut algorithm
 
 
 ## The Rust programming language
 
-When I first heard about Python it was sometime around winter of 2008. I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language. I was a physics undergraduate and had barely done a basic programming course, taught in C. It 
+When I first heard about Python it was sometime around winter of 2008. I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language. I was a physics undergraduate and had barely done a basic programming course, taught in C. It was a bit over my head, and experience, at the time to see what the fuss was about. It was easy to play with python, I could see that immediately. But I didn't have any experience. 
 
 ## WASM - Web Assembly and a live example
 
