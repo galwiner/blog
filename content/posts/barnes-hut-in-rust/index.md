@@ -29,7 +29,7 @@ That, I think, is an essential factor when selecting a project. It should be suf
 
 And so, with the omniscient adult in absentia, is a curious protagonist doomed to hack about like a drunkard? That may well be the case. But if you can find someone, preferably someone slightly more experienced, to walk with you, that's significantly better. Some people enjoy walking alone. I like company.
 
-For this expedition, I recruited not one, but two, much more experienced guides: Joe Lee Moyet and Matan Cohen. Each of these gentlemen has orders of magnitude more programming experience than I will ever have. I could say more kind words about Joe and Matan, but I'll avoid this one tangent for now. Anyway, thanks, Joe and Matan! And for the rest of us, I recommend finding a good guide to help you up the mountain with as little effort as possible.
+For this expedition, I recruited not one, but two, much more experienced guides: Joe Lee Moyet and [Matan Cohen(@matanco64)](https://github.com/matanco64). Each of these gentlemen has orders of magnitude more programming experience than I will ever have. I could say more kind words about Joe and Matan, but I'll avoid this one tangent for now. Anyway, thanks, Joe and Matan! And for the rest of us, I recommend finding a good guide to help you up the mountain with as little effort as possible.
 
 There are several take-home messages for me here, which made this project reach completion this time. It wasn't too hard. I was excited about the topic. it fit well with what I feel is fun doing. I piggybacked another skill I wanted to learn (the Rust programming language) on top of something I was already excited about to get something of a two-for-one, and most importantly I had guides I wasn't afraid to look stupid next to and who were at least as excited about the project as I was.    
 
@@ -74,17 +74,35 @@ As the number of particles increases the number of repeated subdivisions must al
 
 ## Integration of the equations of motion
 
-Writing down the force equations on every particle is fairly straight forward, if computationally complex. But even if we have infinite computational power, we need some rule for updating the velocities and positions of those particles. 
+Writing down the force equations on every particle is straight forward, if computationally taxing. But even if we have infinite computational power, we need some rule for updating the velocities and positions of those particles. An update strategy for positions based on a set of difference equations, whether they are equations of Newtonian mechanics or any other differential equations, is a (numeric, discrete) integration scheme. 
+
+The most basic way to do this is the Euler method. Updating the velocity vector of each particle based on its acceleration, and then updating the position vector based on its velocity. 
+
+$$
+\dot{\vec{r}_i}[t]=\dot{\vec{r}_i}[t-1]+\ddot{\vec{r}_i}[t-1]dt 
+$$
+$$
+\vec{r}_i[t]=\vec{r}_i[t-1]+\dot{\vec{r}_i}[t-1]dt
+$$
+
+How bad is this technique? We can figure it out by comparing to a taylor expansion
+
+$$
+\vec{r}_T = 
+
+$$
 
 
-Euler, Verlet and Runge Kutta
+, Verlet and Runge Kutta
 
 ## The Barnes-Hut algorithm
 
 
-## The Rust programming language
+## Why Rust?
 
-When I first heard about Python it was sometime around winter of 2008. I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language. I was a physics undergraduate and had barely done a basic programming course, taught in C. It was a bit over my head, and experience, at the time to see what the fuss was about. It was easy to play with python, I could see that immediately. But I didn't have any experience. 
+When I first heard about Python it was sometime around winter of 2008. I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language. I was a physics undergraduate and had barely done a basic programming course, taught in C. It was a bit over my head, and experience level, at the time to see what the fuss was about. It was easy to play with python, I could see that immediately. It wasn't clear how this language was fundamentally different to other things at the time, but I was excited about putting time and effort into learning it because I guessed it's going to be worth my while. Reading about the Rust language these days I feel very much the same. 
+
+The Rust programming language is a low-level language coming from Mozilla Research. It's associated with all manor of superlatives, such as "memory-safe" and "blazingly-fast" but I'll save writing about it's differentiating factors for another day. Regardless of any technical wizardry which makes it worth-while to write in, when reading about Rust I get the same feeling I did about Python years ago. I'm not saying the languages are similar or that they have similar use-cases. Just that I get that same feeling about learning it.
 
 ## WASM - Web Assembly and a live example
 
