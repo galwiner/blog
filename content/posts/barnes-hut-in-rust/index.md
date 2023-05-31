@@ -88,12 +88,12 @@ $$
 How bad is this technique? We can figure it out by comparing to a taylor expansion
 
 $$
-\vec{r}_T = 
-
+\vec{r}_T = \vec{r}[t-1]+\dot{\vec{r}}[t-1]dt+\frac{1}{2}\ddot{\vec{r}}[t-1]dt^2+O(dt^3)
 $$
 
+At each time step the error accumulates proportioanlly at \\(dt^2\\) and after \\(n\\) steps, each of size \\(\propto{1/dt}\\) the error is proportional to \\(dt\\). This isn't awesome.
 
-, Verlet and Runge Kutta
+A different scehme, which makes the error accumulation rate quadratic in \\(dt\\) is the [velocity-Verlet](https://en.wikipedia.org/wiki/Verlet_integration) algorithm, but there are others. The go-to algorithm used in such cases is the family of [Runge Kutta](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) (RK) methods. Specifically RK-4 is the default integrator in many computational numerics tools, such as Matlab.
 
 ## The Barnes-Hut algorithm
 
