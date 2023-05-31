@@ -2,7 +2,7 @@
 title: "Barnes Hut in Rust"
 date: 2023-05-27
 math: true
-draft: false
+draft: true
 ---
 
 # Apprenticeship 
@@ -96,6 +96,19 @@ At each time step the error accumulates proportioanlly at \\(dt^2\\) and after \
 A different scehme, which makes the error accumulation rate quadratic in \\(dt\\) is the [velocity-Verlet](https://en.wikipedia.org/wiki/Verlet_integration) algorithm, but there are others. The go-to algorithm used in such cases is the family of [Runge Kutta](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) (RK) methods. Specifically RK-4 is the default integrator in many computational numerics tools, such as Matlab.
 
 ## The Barnes-Hut algorithm
+
+Finally we get to the BH algorithm. The data structure we want to use is a Quad-Tree and we set the max capacity of a node to be exactly one. So node can either contain no particles, or exactly one particle. Attempting to add a second particle to a node triggers a subdivide and after which the first and second particles will belong to different nodes. 
+
+The recipe is as follows: start at the root node. That's the node that contains the entire "universe" if you will. 
+You then traverse the tree, node by node, looking for a node that's not empty (has exactly one particle). For that particle, you calculate 
+
+$$
+\frac{s}{d} < \theta 
+$$
+
+If the left hand side of the equation is \\(>\theta \\)  you traverse down the tree, breadth first. If it's less than  s \\(\theta \\) you calculate the force acting on the particle by all particles in the node and subnodes (all the way down the tree) as if they are all a single body at the position of the center of mass. 
+
+This process allows to aggregate multiple particles which are "far-away" from the test particle and treat them as one. This is the simplifying assumption that brings the computational complexity of the gravitational simulation to \\(O(n\cdot log(n)\\).
 
 
 ## Why Rust?
