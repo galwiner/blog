@@ -2,7 +2,7 @@
 title: "Barnes Hut in Rust"
 date: 2023-06-01
 math: true
-draft: true
+draft: false
 ---
 
 # Apprenticeship 
@@ -35,7 +35,7 @@ There are several take-home messages for me here, which made this project reach 
 
 ## The computational complexity of many particles moving under gravity
 
-Our goal today, then, is to draw circles on a computer screen that gravitationally act upon each other. For that, let's quickly recall some principles of mechanics and how one can find the equations of motion of interacting objects. 
+Our goal today then is to draw circles on a computer screen that appear to be gravitationally action upon each other. For that, let's quickly recall some principles of mechanics and how one can find the equations of motion of interacting objects. 
 
 To compute the gravitational attraction of two particles you apply Newton's law of gravitation. 
 
@@ -56,7 +56,7 @@ So if you want to calculate the force acting on each particle in a collection, y
 
 ## The Quad Tree - a data structure for efficiently partitioning spatial detail
 
-The name of the game, then, is to find a strategy for making a computation with quadratic computational complexity to one that is cheaper. Maybe logarithmic, probably \\(O(n\cdot log(n))\\).
+The name of the game is to find a strategy for making a computation with quadratic computational complexity to one that is cheaper. Maybe logarithmic, probably \\(O(n\cdot log(n))\\).
 
 The first step is to efficiently store data about our particles. This can be done by taking advantage of the non-uniformity of particle distribution in our simulation space. There is often at least some structure. Namely, regions where they are more, or less, tightly packed together. 
 
@@ -72,7 +72,7 @@ As the number of particles increases the number of repeated subdivisions must al
 
 ![](Point_quadtree.png)
 
-The utility of the quad tree is two fold. It has more detail (more nodes) where more particles are present, and it enables finding particles stored inside it in an efficient way (because it's a tree structure). For these reasons it's extensively used in computer graphics whether gravitationally attracting particles are involved or not (e.g in the old computer game [Worms](https://gamedev.stackexchange.com/questions/158906/destructible-terrain-like-worms)).
+The utility of the quad tree is two-fold. It has more detail (more nodes) where more particles are present, and it enables finding particles stored inside it in an efficient way (because it's a tree structure). For these reasons it's extensively used in computer graphics whether gravitationally attracting particles are involved or not (e.g in the old computer game [Worms](https://gamedev.stackexchange.com/questions/158906/destructible-terrain-like-worms)).
 
 ## Integration of the equations of motion
 
@@ -99,25 +99,29 @@ A different scheme, which makes the error accumulation rate quadratic in \\(dt\\
 
 ## The Barnes-Hut algorithm
 
-Finally we get to the BH algorithm. The data structure we want to use is a Quad-Tree and we set the max capacity of a node to be exactly one. So node can either contain no particles, or exactly one particle. Attempting to add a second particle to a node triggers a subdivide and after which the first and second particles will belong to different nodes. 
+Finally, we get to the Barnes-Hut (BH) algorithm. The data structure we want to use is a Quad-Tree and we set the maximum capacity of a node to be exactly one. So nodes can either contain no particles, or exactly one particle. Attempting to add a second particle to a node triggers a subdivision, turning it into four separate nodes. After this step the particles will be redistributed amongst the newly created nodes. 
 
-The recipe is as follows: start at the root node. That's the node that contains the entire "universe" if you will. 
-You then traverse the tree, node by node, looking for a node that's not empty (has exactly one particle). For that particle, you calculate 
+But storing particles in an efficient data structure is insufficient if we want to speed up gravitational dynamics calculations. The crux of the BH algorithm, is an approximation. If a group of particles is far from a test particle, they can all be treated as a single particle (whose mass is the combined mass of the entire group) that is located at the group center of mass. This turns multiple force calculations to a single calculation. What is left is to define what "far-away" means in a quantitative way.
+
+The recipe is as follows: first store all particles in a quad tree. Then select the first particle in the list and find its distance \\(d\\) from the center of mass of the root node, the node containing all particles in the simulation universe. The dimension of the side of this node is \\(s\\). Now calculate
 
 $$
-\frac{s}{d} < \theta 
+\frac{s}{d} <? \theta 
 $$
 
-If the left hand side of the equation is \\(>\theta \\)  you traverse down the tree, breadth first. If it's less than  s \\(\theta \\) you calculate the force acting on the particle by all particles in the node and subnodes (all the way down the tree) as if they are all a single body at the position of the center of mass. 
+where \\(\theta\\) is a constant between 0 and 1. If the left-hand-side of the equation is less than \\(\theta\\) treat all particles as acting from the center of mass and perform just a single calculation. If not, go to the next node in the tree and repeat the calculation. The nice thing here is that if \\(\theta\\)=0 the process converges back to the naive case: everything is, in some sense, close by. 
 
-This process allows to aggregate multiple particles which are "far-away" from the test particle and treat them as one. This is the simplifying assumption that brings the computational complexity of the gravitational simulation to \\(O(n\cdot log(n)\\).
-
+This approximation glosses over the fact there can be structure inside a node. For example, all particles can be in one side of the node, or the other. A physicist may say it's akin to a first term in a multipole expansion, but I won't go into more detail for now. 
 
 ## Why Rust?
+
+That was it for describing this nice algorithm that takes a quadratic cost and makes it much cheaper. Now all that is left to say is why I wanted to implement this thing in Rust.
 
 When I first heard about Python it was sometime around winter of 2008. I had a student job testing software and all the seasoned programmers there were quite happy about doing a first or second big project in the language. I was a physics undergraduate and had barely done a basic programming course, taught in C. It was a bit over my head, and experience level, at the time to see what the fuss was about. It was easy to play with python, I could see that immediately. It wasn't clear how this language was fundamentally different to other things at the time, but I was excited about putting time and effort into learning it because I guessed it's going to be worth my while. Reading about the Rust language these days I feel very much the same. 
 
 The Rust programming language is a low-level language coming from Mozilla Research. It's associated with all manor of superlatives, such as "memory-safe" and "blazingly-fast" but I'll save writing about it's differentiating factors for another day. Regardless of any technical wizardry which makes it worth-while to write in, when reading about Rust I get the same feeling I did about Python years ago. I'm not saying the languages are similar or that they have similar use-cases. Just that I get that same feeling about learning it.
+
+Indeed, beyond supposed prestige of knowing Rust in coming years it also ended up being technically worth it. The number of particles I was able to simulate while maintaining a useable frame rate goes well into the tens of thousands and more. Moreover, because Rust has tooling for compilation into Web-Assembly (WASM) it can generate files that run in the browser. This alone is, to me, reason to play with it and as evidence I include below the working application I teased for this entire post. Hope you enjoy!
 
 ## WASM - Web Assembly and a live example
 
