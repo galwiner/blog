@@ -125,4 +125,4 @@ Indeed, beyond supposed prestige of knowing Rust in coming years it also ended u
 
 ## WASM - Web Assembly and a live example
 
-[//]: # (TODO: add the simulation output here with CI)
+[live demo](https://galwiner.github.io/blog/posts/barnes-hut-in-rust/barnes-hut.html)
