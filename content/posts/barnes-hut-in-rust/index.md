@@ -1,6 +1,6 @@
 ---
 title: "Barnes Hut in Rust"
-date: 2023-05-27
+date: 2023-06-01
 math: true
 draft: true
 ---
@@ -72,6 +72,8 @@ As the number of particles increases the number of repeated subdivisions must al
 
 ![](Point_quadtree.png)
 
+The utility of the quad tree is two fold. It has more detail (more nodes) where more particles are present, and it enables finding particles stored inside it in an efficient way (because it's a tree structure). For these reasons it's extensively used in computer graphics whether gravitationally attracting particles are involved or not (e.g in the old computer game [Worms](https://gamedev.stackexchange.com/questions/158906/destructible-terrain-like-worms)).
+
 ## Integration of the equations of motion
 
 Writing down the force equations on every particle is straight forward, if computationally taxing. But even if we have infinite computational power, we need some rule for updating the velocities and positions of those particles. An update strategy for positions based on a set of difference equations, whether they are equations of Newtonian mechanics or any other differential equations, is a (numeric, discrete) integration scheme. 
@@ -85,15 +87,15 @@ $$
 \vec{r}_i[t]=\vec{r}_i[t-1]+\dot{\vec{r}_i}[t-1]dt
 $$
 
-How bad is this technique? We can figure it out by comparing to a taylor expansion
+How bad is this technique? We can figure it out by comparing to a Taylor series expansion of the position vector to second order: 
 
 $$
 \vec{r}_T = \vec{r}[t-1]+\dot{\vec{r}}[t-1]dt+\frac{1}{2}\ddot{\vec{r}}[t-1]dt^2+O(dt^3)
 $$
 
-At each time step the error accumulates proportioanlly at \\(dt^2\\) and after \\(n\\) steps, each of size \\(\propto{1/dt}\\) the error is proportional to \\(dt\\). This isn't awesome.
+The difference between this expansion and the Euler integration equations is the term \\(\frac{1}{2}\ddot{\vec{r}}[t-1]\\). So we see that at each time step the error accumulates proportionally to \\(dt^2\\). After \\(n\\) steps, each of size \\(\propto{1/dt}\\) the error is proportional to \\(dt\\). This isn't awesome performance.
 
-A different scehme, which makes the error accumulation rate quadratic in \\(dt\\) is the [velocity-Verlet](https://en.wikipedia.org/wiki/Verlet_integration) algorithm, but there are others. The go-to algorithm used in such cases is the family of [Runge Kutta](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) (RK) methods. Specifically RK-4 is the default integrator in many computational numerics tools, such as Matlab.
+A different scheme, which makes the error accumulation rate quadratic in \\(dt\\) is the [velocity-Verlet](https://en.wikipedia.org/wiki/Verlet_integration) algorithm, but there are others. The go-to algorithm used in such cases is the family of [Runge Kutta](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods) (RK) methods. Specifically RK-4 is the default integrator in many computational numerics tools, such as Matlab.
 
 ## The Barnes-Hut algorithm
 
