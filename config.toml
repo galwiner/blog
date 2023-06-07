@@ -3,6 +3,10 @@ languageCode = 'en-us'
 title = 'The Fumbling Physicist'
 theme = ["github.com/theNewDynamic/gohugo-theme-ananke"]
 show_reading_time = true
+Paginate = 10
+googleAnalytics = ""
+enableRobotsTXT = true
+
 [[params.ananke_socials]]
 name = "linkedin"
 url = "https://www.linkedin.com/in/galwiner/"

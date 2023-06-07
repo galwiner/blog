@@ -3,6 +3,7 @@ title: "Cat Qubits"
 date: 2023-03-27T09:40:34+02:00
 math: true
 draft: false
+featured_image: "cat_qubit_header.png"
 ---
 
 

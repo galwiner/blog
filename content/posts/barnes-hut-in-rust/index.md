@@ -2,6 +2,7 @@
 title: "Barnes Hut in Rust"
 date: 2023-06-01
 math: true
+featured_image: "header.png"
 draft: false
 ---
 

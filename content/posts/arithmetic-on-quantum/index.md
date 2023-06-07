@@ -3,6 +3,7 @@ title: "Arithmetic on Quantum Computers"
 date: 2023-03-13T17:16:42+02:00
 math: true
 draft: false
+featured_image: "pascalino-header.png"
 ---
 
 # How do you calculate 1+1 on a quantum computer?
