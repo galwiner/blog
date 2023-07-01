@@ -1,0 +1,60 @@
+<html>
+<head>
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script type="module">
+    import init from '/blog/posts/barnes-hut-in-rust/wasm/pkg/barnes_hut.js';
+
+    await init();
+</script>
+
+<table border="1">
+    <tr>
+        <td>Button</td>
+        <td>Action</td>
+    </tr>
+    <tr>
+        <td>P</td>
+        <td>add random particles in a gaussian</td>
+    </tr>
+    <tr>
+        <td>u</td>
+        <td>add random particles in a uniform square</td>
+    </tr>
+    <tr>
+        <td>R</td>
+        <td>Reset zoom and pan</td>
+    </tr>
+    <tr>
+        <td>+/-</td>
+        <td> increase or decrease black hole mass</td>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>remove black hole</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>add small black hole in center</td>
+    </tr>
+    <tr>
+        <td>left click / right click</td>
+        <td>add a stationary or moving particle</td>
+    </tr>
+    <tr>
+        <td>zoom wheel / arrow keys</td>
+        <td>move around the screen</td>
+    </tr>
+    <tr>
+        <td>space</td>
+        <td>toggle quad tree and particles</td>
+    </tr>
+    <tr>
+        <td>backspace</td>
+        <td>remove all particles</td>
+    </tr>
+</table>
+</body>
+</html>
