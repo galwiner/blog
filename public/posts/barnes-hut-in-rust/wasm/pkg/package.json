@@ -1,0 +1,12 @@
+{
+  "name": "barnes-hut",
+  "version": "0.1.0",
+  "files": [
+    "barnes_hut_bg.wasm",
+    "barnes_hut.js",
+    "barnes_hut.d.ts"
+  ],
+  "module": "barnes_hut.js",
+  "types": "barnes_hut.d.ts",
+  "sideEffects": false
+}
