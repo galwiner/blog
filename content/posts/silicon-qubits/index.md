@@ -1,6 +1,6 @@
 ---
 title: "The basics of quantum-dot qubits (1): some basic solid-state physics"
-date: 2023-06-08
+date: 2023-07-08
 math: true
 featured_image: "header.jpg"
 draft: false
