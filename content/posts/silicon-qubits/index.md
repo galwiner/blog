@@ -89,5 +89,4 @@ Our playing field is that of the solid. A periodic set of atoms which make up wh
 
 On the next post I'll explain the experimental knobs we have to control electrons, and how those knobs enable the creation of devices where Quantum Information is manipulated. I will also try to explain why such devices hold great promise for achieving the scale needed for truly useful quantum computation. 
 
-
-
+![xkcd-2798](xckd.png)
