@@ -10,7 +10,7 @@ This post was [originally posted](https://www.classiq.io/insights/the-classiq-en
 
 Have you ever solved a Sudoku puzzle? It was pretty popular at some point in the early 2000s. For some reason, everyone was solving them all the time. Mind you, this is a time well before smartphones. People just didn't have better things to do. If you haven't heard of it, in a Sudoku, the goal is to fill a 9X9 grid with digits such that in each row and each column, each digit appears only once. This type of puzzle is an example of a Constraint Satisfaction Problem (CSP). These are problems where you have to "fill in the blanks" with an item (e.g., a digit) from a set of possibilities (e.g., the digits 1 through 9) but not break some set of rules (e.g., no repetitions of a digit), and they're more common than you'd think.  
 
-The class of CSP has other, arguably more interesting, instances in the form of games (any crossword puzzle), mathematics [map coloring](https://en.wikipedia.org/wiki/Four_color_theorem](https://en.wikipedia.org/wiki/Four_color_theorem), and so on. There's a reason why this whole thing is important to us, though, and it isn't because we want to prove a mathematical theorem. It's a lot more practical than that. At least if you're in the business of quantum algorithm design. 
+The class of CSP has other, arguably more interesting, instances in the form of games (any crossword puzzle), mathematics [map coloring](https://en.wikipedia.org/wiki/Four_color_theorem), and so on. There's a reason why this whole thing is important to us, though, and it isn't because we want to prove a mathematical theorem. It's a lot more practical than that. At least if you're in the business of quantum algorithm design. 
 
 
 ### Optimization of Quantum Circuits
