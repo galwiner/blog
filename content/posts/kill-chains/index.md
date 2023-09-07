@@ -6,7 +6,7 @@ featured_image: "cover.jpeg"
 draft: false
 ---
 
-This post was [originally posted](https://www.classiq.io/insights/kill-chains-the-internet-of-things-and-quantum-combinatorial-optimization-a-buzzword-salad) on the Classiq blog.
+This post was [originally posted](https://www.classiq.io/insights/kill-chains-the-internet-of-things-and-quantum-combinatorial-optimization-a-buzzword-salad) on the Classiq blog. Written with Ariel Smoler.
 
 
 Depending on who you ask, the size of the cyber security market is currently (as of August 2023) estimated at a few hundred billion USD/year. It’s harder to estimate the size of the internet-of-things market as the definitions are more vague than those of cyber-security. Is a web-connected-toaster an Internet-Of-Things  (IOT) device? Sure, maybe, but what about a Radio-Frequency (RF) identification tag with a microchip embedded stuck on an egg carton? Yeah, that’s probably IoT-related too. Coincidentally, both examples can be targets for cyber-attacks. However, it’s unclear which evil cyber-capable red-tailed fox will likely target that lowly yet delicious, internet-connected treat.
