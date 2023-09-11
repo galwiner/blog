@@ -29,7 +29,7 @@ I've been writing my usual rambling prose in the first person up until this poin
 
 The technology which allows us to create small structures in Silicon is arguably one of the most advanced abilities humans have ever developed (but it's going to be a simple argument to win). Today we are able to shape Silicon (and other materials) to form complex structures made of shapes that are measured in single nanometers. 
 
-This would have already been impressive if the way to do this was to shoot single atoms or single electrons at a material, and chew away at it very slowly, ending up with the shape we wanted. The size of the atom is below a nanometer and so that would have been a process similar to an ant forming a sculpture from a sugar cube by thoughtfully removing individual sugar grains. This method, as you can imagine, is painstakingly slow. If we wear our capitalists' visor for a moment, the consequence would have been impossibly expensive computer chips and the computer revolution would never have happened. Nevertheless, there does exist such a method to shape silicon call ion-beam lithography and in some cases it's very useful.  
+This would have already been impressive if the way to do this was to shoot single atoms or single electrons at a material, and chew away at it very slowly, ending up with the shape we wanted. The size of the atom is below a nanometer and so that would have been a process similar to an ant forming a sculpture from a sugar cube by thoughtfully removing individual sugar grains. This method, as you can imagine, is painstakingly slow. If we wear our capitalists' visor for a moment, the consequence would have been impossibly expensive computer chips and the computer revolution would never have happened. Nevertheless, there do exist such methods to shape silicon like electron-beam or ion-beam lithography and in some cases they're very useful.  
 
 The way we make these small structures in industry is devilishly clever and incredibly quick. We use light in a process called Photo-lithography (almost literally "writing with light"). This is a process where the shapes we want to make in Silicon are projected (with light) onto the material. Using various chemical processes it's possible to eat away ("etch") areas where the light touches and leave others untouched (or vice-versa). Instead of the ant chipping away at the sugar cube, bit-by-bit, it's more like developing a picture. 
 
@@ -70,9 +70,21 @@ Electron Spin Resonance (ESR)
 
 
 
-# How to make a million QD qubits on a single chip? 
+# How many qubits do you want? Silicon can make them...
 
-Diraq 
+Perhaps a less greedy question is:- How many qubits do we need? Ask the starry eyed quantum processor engineer and they might give you an optimistic answer something like "We think we can start to do useful things with 100,000, maybe even only 10's of thousands of qubits." Ask the grumbly quantum error correction guy, and they're more likely to tell you "Make me ten million qubits, then we talk".
+
+The truth is, all of those numbers are a lot, and deep into the realms of scaled systems.
+
+Qubits in silicon are tiny. If you put a million of them right next to each other in a grid, most people would still need a microscope to see the spec they created. But that's not the important part... 
+
+The tricky thing with qubits is how to control them. They're needy little rebels, they each need their own tailored control signals. So for a million qubits, that's at least a million control signals. The control signals need wires to travel down, and they all need to be delivered to a chip sitting in the core of a bespoke refrigerator at only a fraction of a degree above absolute zero. The problem is oddly reminiscent of Mr Burns asking Smithers to get into the Spruce Moose. 
+
+Thankfully there is one way we've managed to create systems with that many signals generated and routed around in one place.... You guessed it, CMOS.
+
+# Electronics
+
+# Thermal load
 
 # Summary
 
