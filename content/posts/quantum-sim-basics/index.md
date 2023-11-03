@@ -1,6 +1,6 @@
 ---
 title: "Cat Qubits"
-date: 2023-03-27T09:40:34+02:00
+date: 2023-11-03T10:00:00+02:00
 math: true
 draft: false
 featured_image: "puzzle_solving.png"
