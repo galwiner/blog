@@ -1,5 +1,5 @@
 ---
-title: "Cat Qubits"
+title: "Quantum simulators and the Classiq platform"
 date: 2023-11-03T10:00:00+02:00
 math: true
 draft: false
