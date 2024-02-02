@@ -1,4 +1,4 @@
 
 {{ if .Params.math }}{{ partial "helpers/katex.html" . }}{{ end }}
 {{if eq .Params.lang "he"}}<html dir="rtl" lang="{{ or site.LanguageCode site.Language.Lang }}"> {{end}}
-
+{{ partial "statcounter.html" . }}
